@@ -5,10 +5,9 @@ const path = require('path');
 const hbs = require('hbs');
 const favicon = require('serve-favicon');
 const port = process.env.PORT || 5000;
-mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost:27017/login-api",{
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+const db = "mongodb+srv://piyush:gupta@cluster0.hoqlq.mongodb.net/code-with-coffee?retryWrites=true&w=majority";
+
+mongoose.connect(db)
 .then(()=>console.log('successful'))
 .catch((err)=>console.log('error'));
 
