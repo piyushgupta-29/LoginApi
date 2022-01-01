@@ -4,9 +4,10 @@
     const email = document.getElementById('email');
     const password = document.getElementById('password');
     const password2 = document.getElementById('password2');
-
     form.addEventListener('submit', e => {
         checkInputs();
+        if(!finalCheck())
+            e.preventDefault();
     });
     function checkInputs() {
         // trim to remove the whitespaces
@@ -14,6 +15,7 @@
         const emailValue = email.value.trim();
         const passwordValue = password.value.trim();
         const password2Value = password2.value.trim();
+        
         
         if(usernameValue === '') {
             setErrorFor(username, 'Username cannot be blank');
@@ -42,6 +44,7 @@
         } else{
             setSuccessFor(password2);
         }
+        
     }
 
     function setErrorFor(input, message) {
@@ -71,4 +74,13 @@
     close_btn.addEventListener('click', () => {
         social_panel_container.classList.remove('visible')
     });
+    function finalCheck(){
+        let x = document.getElementsByClassName('form-control');
+        for(let i=0;i<x.length;i++)
+        {
+            if(!(x[i].className === "form-control success"))
+                return false;
+        }
+        return true;
+    }
 </script>
