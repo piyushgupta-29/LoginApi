@@ -5,7 +5,12 @@ const path = require('path');
 const hbs = require('hbs');
 const favicon = require('serve-favicon');
 const port = process.env.PORT || 5000;
-mongoose.connect('mongodb://localhost:27017/login-api').then( ()=>{ console.log('db connected') } ).catch( (err)=>{ console.log(err) } );
+mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost:27017/login-api",{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(()=>console.log('successful'))
+.catch((err)=>console.log('error'));
 
 const schema = new mongoose.Schema({
     Username: String,
